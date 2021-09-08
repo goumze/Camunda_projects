@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="food-menu" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.7.0">
+  <decision id="food-decision" name="Food DMN">
+    <decisionTable id="DecisionTable_0tdew2i">
+      <input id="Input_1" camunda:inputVariable="season">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>season</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="Dish" typeRef="string" />
+      <rule id="DecisionRule_0gcae7q">
+        <inputEntry id="UnaryTests_1uq29sj">
+          <text>"Fall"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vkdhvv">
+          <text>"Paneer"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13szov9">
+        <inputEntry id="UnaryTests_100kcaq">
+          <text>"Winter"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fiq8d3">
+          <text>"Aloo Curry"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0w378sg">
+        <inputEntry id="UnaryTests_0jhh0k1">
+          <text>"Spring"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1tjg5w8">
+          <text>"Tandoori Chicken"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="food-decision">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
