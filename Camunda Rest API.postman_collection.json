@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "e5b5888b-b016-43c5-b4a2-5624186b823a",
+		"name": "Camunda Rest API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Deployment -- Queries for deployments that fulfill given parameters. Parameters may be the properties of deployments, such as the id or name or a range of the deployment time. The size of the result set can be retrieved by using the Get Deployment count method.",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/deployment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"deployment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camunda Swagger JSON",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/swagger.json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"swagger.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camunda -- Authorization details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "A69BA8D7DCFB57C85BCBFB8EA25BC57A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/authorization",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"authorization"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camunda Process Start",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"variables\": {\n        \"order\": {\n            \"value\": \"Espresso\",\n            \"type\": \"String\"\n        },\n        \"name\":{\n            \"value\":\"Goutam Mishra\",\n            \"type\":\"String\"\n        },\n        \"isNameFine\":{\n            \"value\":true,\n            \"type\":\"boolean\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/process-definition/key/{{process_name}}/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"process-definition",
+						"key",
+						"{{process_name}}",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camunda Fetch And Lock an external task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workerId\": \"aWorkerId\",\n    \"maxTasks\": 1,\n    \"usePriority\": true,\n    \"topics\": [\n        {\n            \"topicName\": \"deliverCoffeeOrder\",\n            \"lockDuration\": 10000,\n            \"variables\": [\n                \"orderId\"\n            ]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/external-task/fetchAndLock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"external-task",
+						"fetchAndLock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camunda Complete an external task using task identifier",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workerId\": \"dd63dbea-0cd1-11ec-987b-9ee9c6ca229a\",\n    \"variables\": {},\n    \"localVariables\": {}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/external-task/dd63dbea-0cd1-11ec-987b-9ee9c6ca229a/complete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"external-task",
+						"dd63dbea-0cd1-11ec-987b-9ee9c6ca229a",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camunda retrieve list of external task ids",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/external-task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"external-task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Camunda DMN Evaluator",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"variables\": {\n        \"season\": {\n            \"value\": \"Spring\",\n            \"type\": \"String\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/decision-definition/key/food-decision/evaluate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"decision-definition",
+						"key",
+						"food-decision",
+						"evaluate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "process_name",
+			"value": ""
+		},
+		{
+			"key": "TASK_ID",
+			"value": ""
+		}
+	]
+}
