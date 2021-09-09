@@ -15,6 +15,6 @@ public class LoggerDelegate implements JavaDelegate {
         LOGGER.info("Will print name");
         LOGGER.info("{}",execution.getVariable("name"));
         LOGGER.info("{}",execution.getCurrentActivityId());
-        LOGGER.info("{}",execution.getVariable("isNameFine"));
+        LOGGER.info("isNameFine {}",execution.getVariable("isNameFine"));
     }
 }

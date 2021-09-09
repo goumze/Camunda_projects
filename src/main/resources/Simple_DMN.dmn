@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="food-menu" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.7.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="food-menu" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.7.0">
   <decision id="food-decision" name="Food DMN">
     <decisionTable id="DecisionTable_0tdew2i">
-      <input id="Input_1" camunda:inputVariable="season">
+      <input id="Input_1" camunda:inputVariable="name">
         <inputExpression id="InputExpression_1" typeRef="string">
-          <text>season</text>
+          <text>name</text>
         </inputExpression>
       </input>
-      <output id="Output_1" name="Dish" typeRef="string" />
+      <output id="Output_1" name="isNameFine" typeRef="boolean" biodi:width="192" />
       <rule id="DecisionRule_0gcae7q">
         <inputEntry id="UnaryTests_1uq29sj">
-          <text>"Fall"</text>
+          <text>"Goutam Mishra"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0vkdhvv">
-          <text>"Paneer"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_13szov9">
-        <inputEntry id="UnaryTests_100kcaq">
-          <text>"Winter"</text>
+      <rule id="DecisionRule_1lntll8">
+        <inputEntry id="UnaryTests_17r231r">
+          <text>""</text>
         </inputEntry>
-        <outputEntry id="LiteralExpression_0fiq8d3">
-          <text>"Aloo Curry"</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0w378sg">
-        <inputEntry id="UnaryTests_0jhh0k1">
-          <text>"Spring"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1tjg5w8">
-          <text>"Tandoori Chicken"</text>
+        <outputEntry id="LiteralExpression_18300cf">
+          <text>false</text>
         </outputEntry>
       </rule>
     </decisionTable>
