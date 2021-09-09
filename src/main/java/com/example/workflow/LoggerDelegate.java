@@ -12,9 +12,6 @@ public class LoggerDelegate implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        LOGGER.info("Will print name");
-        LOGGER.info("{}",execution.getVariable("name"));
-        LOGGER.info("{}",execution.getCurrentActivityId());
-        LOGGER.info("isNameFine {}",execution.getVariable("isNameFine"));
+        LOGGER.info("{}",execution.getCurrentActivityName());
     }
 }
