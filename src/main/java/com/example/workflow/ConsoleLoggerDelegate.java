@@ -13,6 +13,6 @@ public class ConsoleLoggerDelegate implements JavaDelegate {
     private final Logger LOGGER = LoggerFactory.getLogger(ConsoleLoggerDelegate.class.getName());
 
     public void execute(DelegateExecution execution) throws Exception {
-        LOGGER.info("Payment Process: " + execution.getCurrentActivityName());
+        LOGGER.info("Payment Process: {}" + execution.getCurrentActivityName());
     }
 }
