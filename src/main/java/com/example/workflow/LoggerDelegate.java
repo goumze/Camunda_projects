@@ -13,6 +13,6 @@ public class LoggerDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         LOGGER.info("{}",execution.getCurrentActivityName());
-        LOGGER.info("isNameFine {}",execution.getVariable("isNameFine"));
+        //LOGGER.info("isNameFine {}",execution.getVariable("isNameFine"));
     }
 }

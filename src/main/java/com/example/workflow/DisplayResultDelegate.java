@@ -52,12 +52,18 @@ public class DisplayResultDelegate implements JavaDelegate {
 
         //https://docs.camunda.org/manual/7.15/user-guide/dmn-engine/evaluate-decisions/
         //https://forum.camunda.org/t/dmn-table-error-classnotfoundexception-de-odysseus-el-util-simplecontext/9635
-        DecisionService decisionService = processEngine.getDecisionService();
+        /*DecisionService decisionService = processEngine.getDecisionService();
         VariableMap variables = Variables.createVariables().putValue("name", execution.getVariable("name"));
         DmnDecisionTableResult process =  decisionService.evaluateDecisionTableByKey("food-decision", variables);
         Boolean result = process.getSingleEntry();
         LOGGER.info("Decision input: {}",execution.getVariable("name"));
         LOGGER.info("Decision result: {}",result);
-        execution.setVariable("isNameFine",result);
+        execution.setVariable("isNameFine",result);*/
+       /* try{
+            throw new InterruptedException();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }*/
     }
 }
