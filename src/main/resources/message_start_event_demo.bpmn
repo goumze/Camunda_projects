@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0m2lvos" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.14.0">
+  <bpmn:process id="message_start_event_demo" isExecutable="true">
+    <bpmn:endEvent id="Event_0uw2ez7">
+      <bpmn:incoming>Flow_0xm2qaf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_07loywr" sourceRef="Message_Start" targetRef="Activity_0vwly5a" />
+    <bpmn:sequenceFlow id="Flow_0xm2qaf" sourceRef="Activity_0vwly5a" targetRef="Event_0uw2ez7" />
+    <bpmn:userTask id="Activity_0vwly5a" name="Do something with received message">
+      <bpmn:incoming>Flow_07loywr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xm2qaf</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="Message_Start" name="Message Event Receive" camunda:initiator="message_start">
+      <bpmn:outgoing>Flow_07loywr</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1ptfchi" messageRef="Message_12j2fez" />
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_12j2fez" name="message_start" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="message_start_event_demo">
+      <bpmndi:BPMNEdge id="Flow_07loywr_di" bpmnElement="Flow_07loywr">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="280" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xm2qaf_di" bpmnElement="Flow_0xm2qaf">
+        <di:waypoint x="380" y="120" />
+        <di:waypoint x="482" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_077wlke_di" bpmnElement="Activity_0vwly5a">
+        <dc:Bounds x="280" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0uw2ez7_di" bpmnElement="Event_0uw2ez7">
+        <dc:Bounds x="482" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0yqzcxy_di" bpmnElement="Message_Start">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="133" y="145" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
