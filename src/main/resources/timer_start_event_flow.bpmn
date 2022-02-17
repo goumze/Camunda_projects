@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ybxk2p" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.14.0">
+  <bpmn:process id="timer_start_event_flow" isExecutable="true">
+    <bpmn:endEvent id="Event_1cmo685">
+      <bpmn:incoming>Flow_0j2ubb7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="timer_start_event" name="Timer Start Event">
+      <bpmn:outgoing>Flow_1f7sdmu</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_029fpaa">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1f7sdmu" sourceRef="timer_start_event" targetRef="timer_event_logger" />
+    <bpmn:sequenceFlow id="Flow_0j2ubb7" sourceRef="timer_event_logger" targetRef="Event_1cmo685" />
+    <bpmn:serviceTask id="timer_event_logger" name="Timer Event Logging Service" camunda:class="com.example.workflow.LoggerDelegate">
+      <bpmn:incoming>Flow_1f7sdmu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0j2ubb7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:textAnnotation id="TextAnnotation_10uvrvl">
+      <bpmn:text>This will log the attempts timer event logger service was accessed.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1x9qxfw" sourceRef="timer_event_logger" targetRef="TextAnnotation_10uvrvl" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="timer_start_event_flow">
+      <bpmndi:BPMNShape id="TextAnnotation_10uvrvl_di" bpmnElement="TextAnnotation_10uvrvl">
+        <dc:Bounds x="410" y="50" width="100" height="82" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1f7sdmu_di" bpmnElement="Flow_1f7sdmu">
+        <di:waypoint x="218" y="177" />
+        <di:waypoint x="310" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j2ubb7_di" bpmnElement="Flow_0j2ubb7">
+        <di:waypoint x="410" y="177" />
+        <di:waypoint x="492" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1cmo685_di" bpmnElement="Event_1cmo685">
+        <dc:Bounds x="492" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1c436jw_di" bpmnElement="timer_start_event">
+        <dc:Bounds x="182" y="159" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="202" width="86" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hs92ay_di" bpmnElement="timer_event_logger">
+        <dc:Bounds x="310" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1x9qxfw_di" bpmnElement="Association_1x9qxfw">
+        <di:waypoint x="396" y="137" />
+        <di:waypoint x="410" y="121" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
