@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0i6wcpi" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.14.0">
+  <bpmn:collaboration id="order-send-receive-task">
+    <bpmn:participant id="Participant_0cgo5oj" name="Order Management" processRef="Process_0l0kmfu" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0l0kmfu" isExecutable="true">
+    <bpmn:userTask id="Activity_0e6ajra" name="Collect feedback">
+      <bpmn:incoming>Flow_1cyb4mc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1eju247</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1hqif4r</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="order-validation" name="Validate Order">
+      <bpmn:incoming>Flow_1hqif4r</bpmn:incoming>
+      <bpmn:outgoing>Flow_0c6cskc</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sendTask id="Activity_0q3irbl" name="Send Order to shipment vendor" camunda:class="com.example.workflow.SendOrderDelegate">
+      <bpmn:incoming>Flow_0c6cskc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ohy0rc</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:serviceTask id="Activity_0c4nwe2" name="Update the inventory" camunda:expression="${execution.setVariable(&#34;isinventoryUpdated&#34;,true)}">
+      <bpmn:incoming>Flow_1ohy0rc</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mrvvy0</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0otv1fg">
+      <bpmn:incoming>Flow_1eju247</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateCatchEvent id="Event_0wieinf">
+      <bpmn:incoming>Flow_1mrvvy0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cyb4mc</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_00164uq">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1hqif4r" sourceRef="StartEvent_1" targetRef="order-validation" />
+    <bpmn:sequenceFlow id="Flow_0c6cskc" sourceRef="order-validation" targetRef="Activity_0q3irbl" />
+    <bpmn:sequenceFlow id="Flow_1ohy0rc" sourceRef="Activity_0q3irbl" targetRef="Activity_0c4nwe2" />
+    <bpmn:sequenceFlow id="Flow_1mrvvy0" sourceRef="Activity_0c4nwe2" targetRef="Event_0wieinf" />
+    <bpmn:sequenceFlow id="Flow_1eju247" sourceRef="Activity_0e6ajra" targetRef="Event_0otv1fg" />
+    <bpmn:sequenceFlow id="Flow_1cyb4mc" sourceRef="Event_0wieinf" targetRef="Activity_0e6ajra" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="order-send-receive-task">
+      <bpmndi:BPMNShape id="Participant_0cgo5oj_di" bpmnElement="Participant_0cgo5oj" isHorizontal="true">
+        <dc:Bounds x="159" y="80" width="969" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1hqif4r_di" bpmnElement="Flow_1hqif4r">
+        <di:waypoint x="238" y="187" />
+        <di:waypoint x="270" y="187" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c6cskc_di" bpmnElement="Flow_0c6cskc">
+        <di:waypoint x="370" y="187" />
+        <di:waypoint x="420" y="187" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ohy0rc_di" bpmnElement="Flow_1ohy0rc">
+        <di:waypoint x="520" y="187" />
+        <di:waypoint x="570" y="187" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mrvvy0_di" bpmnElement="Flow_1mrvvy0">
+        <di:waypoint x="670" y="187" />
+        <di:waypoint x="742" y="187" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1eju247_di" bpmnElement="Flow_1eju247">
+        <di:waypoint x="950" y="187" />
+        <di:waypoint x="1022" y="187" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cyb4mc_di" bpmnElement="Flow_1cyb4mc">
+        <di:waypoint x="778" y="187" />
+        <di:waypoint x="850" y="187" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1ohix57_di" bpmnElement="Activity_0e6ajra">
+        <dc:Bounds x="850" y="147" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="202" y="169" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18zs6aa_di" bpmnElement="order-validation">
+        <dc:Bounds x="270" y="147" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jo1tvy_di" bpmnElement="Activity_0q3irbl">
+        <dc:Bounds x="420" y="147" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c9umk8_di" bpmnElement="Activity_0c4nwe2">
+        <dc:Bounds x="570" y="147" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0otv1fg_di" bpmnElement="Event_0otv1fg">
+        <dc:Bounds x="1022" y="169" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0t94rnq_di" bpmnElement="Event_0wieinf">
+        <dc:Bounds x="742" y="169" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
